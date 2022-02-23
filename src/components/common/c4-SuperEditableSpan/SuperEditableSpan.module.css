@@ -1,0 +1,8 @@
+.mySpan {
+    color: #895757;
+    font-style: italic;
+    cursor: pointer;
+}
+.mySpan:hover {
+    color: #f89b9b;
+}

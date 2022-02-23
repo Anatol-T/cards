@@ -1,0 +1,18 @@
+.superSelect {
+    height: 2rem;
+    padding: 0rem;
+    text-align: center;
+    width: 4rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #383838 !important;
+    background-color: rgba(161, 250, 161, 0.3);
+    background-clip: padding-box;
+    border: 1px solid black;
+    border-radius: 0.3rem;
+    box-shadow: 3px 0px 5px rgba(66,66,66,.80);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+

@@ -1,0 +1,35 @@
+.default {
+
+}
+
+.red {
+    background: red !important;
+}
+.default {
+    box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+    background: #79bbff linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+    border-radius:6px;
+    border:1px solid #84bbf3;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 0px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #528ecc;
+}
+.default:hover {
+    background: #378de5 linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+}
+.default:active {
+    position:relative;
+    top:1px;
+}
+.default:disabled {
+    opacity: 40%;
+}
+.default:disabled:hover {
+    background: #79bbff linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+}
