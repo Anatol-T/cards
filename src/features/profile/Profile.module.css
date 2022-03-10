@@ -1,0 +1,30 @@
+.error {
+    bottom: 130px;
+}
+
+.avatar {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.avatar img {
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+
+.info {
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+    word-wrap: break-word;
+    color: #555555;
+}
+
+.btnWrapper {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}

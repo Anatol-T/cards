@@ -1,0 +1,56 @@
+.input {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.error {
+    color: #b60004;
+    font-weight: 700;
+    /*border: 1px solid #b60004;*/
+    padding: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+    max-width: 300px;
+}
+
+.containerCheckbox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.containerCheckbox p {
+    font-size: 14px;
+}
+
+.linkLogin {
+    text-decoration: none;
+}
+
+.forgotText {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: right;
+    color: #2D2E46;
+    margin-bottom: 45px;
+}
+
+.forgotText:hover {
+    font-weight: bold;
+}
+
+.signUpText {
+    display: inline;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #21268F;
+    border: 2px solid #F9F9FE;
+}
+
+.signUpText:hover {
+    border-bottom: 2px solid #21268F;
+}

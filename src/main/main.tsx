@@ -1,14 +1,10 @@
 import React from 'react';
-import {RoutesTo} from "./RoutesTo";
-import {Header} from "../components/header/Header";
-
+import Header from "./ui/header/Header";
 
 export const Main = () => {
-  return (
-    <div>
-        <Header/>
-        <RoutesTo/>
-    </div>
-  );
+    return (
+        <div>
+            <Header/>
+        </div>
+    );
 };
-

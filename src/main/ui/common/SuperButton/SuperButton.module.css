@@ -1,0 +1,50 @@
+/*можно убрать дублирование */
+.default {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    padding: 10px 60px;
+    transition: .6s;
+    font-size: 16px;
+    line-height: 20px;
+    color: #ffffff;
+    background: #003465;
+    border-radius: 10px;
+}
+
+.default:hover {
+    background-color: #00488B;
+    color: #ffffff;
+}
+
+.default:active {
+    transform: scale(1.07);
+    background-color: #00488B;
+    color: #ffffff;
+}
+
+.default:disabled {
+    cursor: default;
+    transform: none;
+    background-color: #465D74;
+}
+
+.red {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    padding: 10px 60px;
+    transition: .6s;
+    font-size: 16px;
+    line-height: 20px;
+    color: #ffffff;
+    background: #003465;
+    border-radius: 10px;
+}
+
+.red:hover {
+    background-color: #00488B;
+    color: #ffffff;
+}

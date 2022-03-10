@@ -1,16 +1,15 @@
 import React from 'react';
 import './App.css';
-import {Main} from "./main";
-import {HashRouter} from "react-router-dom";
+import {Main} from "./Main";
+import {RoutesComponent} from "./ui/routes/Routes";
 
-function App() {
-  return (
-    <div className="App">
-      <HashRouter>
-        <Main/>
-      </HashRouter>
-    </div>
-  );
-}
+const App = () => {
+    return (
+        <div className="App">
+            <Main/>
+            <RoutesComponent/>
+        </div>
+    );
+};
 
 export default App;
