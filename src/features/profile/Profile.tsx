@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import {Navigate} from 'react-router-dom';
 import SuperButton from "../../main/ui/common/SuperButton/SuperButton";
 import styles from "./Profile.module.css";
@@ -8,8 +8,9 @@ import noAvatar from './noAvatar.png'
 import {updateProfile} from "../../main/bll/profileReducer";
 import {Frame} from "../../main/ui/common/Frame/Frame";
 import {logoutTC} from "../../main/bll/loginReducer";
-import {SuperLoading} from "../../main/ui/common/SuperLoading/SuperLoading";
 import SuperEditableSpan from "../../main/ui/common/SuperEditableSpan/SuperEditableSpan";
+import {PATH} from "../../main/ui/routes/Routes";
+import Preloader from "../../main/ui/common/Preloader/Preloader";
 
 export const Profile = () => {
   const dispatch = useDispatch();
@@ -18,17 +19,20 @@ export const Profile = () => {
   const profileEmail = useSelector<AppRootStateType, string>(state => state.profilePage.email);
   const error = useSelector<AppRootStateType, string | undefined>(state => state.profilePage.error);
   const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.login.status);
-  const loading = useSelector<AppRootStateType, boolean>(state => state.login.loading);
+  const loading = useSelector<AppRootStateType, boolean>(state => state.app.isLoading);
 
   const [name, setName] = useState(profileName);
-  //const [editName, setEditName] = useState(false);
+  const [localErr, setLocalErr] = useState<string>('')
 
-  //const onDoubleClickNameHandler = () => setEditName(true);
+  useEffect(()=>{
+    setName(profileName)
+  }, [profileName])
+
   const onBlurNameHandler = () => {
-    //setEditName(false);
     onSubmitName();
   }
   const changeNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    if (localErr) setLocalErr('')
     setName(e.currentTarget.value.trim())
   };
 
@@ -37,6 +41,11 @@ export const Profile = () => {
   }
 
   const onSubmitName = () => {
+    if (name.length > 10) {
+      setLocalErr('Name should be less then 11 symbols!')
+      setName(profileName)
+      return
+    }
     if (name && (name !== profileName)) {
       dispatch(updateProfile({name}));
     }
@@ -50,11 +59,11 @@ export const Profile = () => {
   }
 
   if (!isLoggedIn) {
-    return <Navigate to={'/login'}/>
+    return <Navigate to={PATH.LOGIN}/>
   }
   return (
     <>
-      {loading && <SuperLoading/>}
+      {loading && <Preloader/>}
       <Frame>
         <span><strong>It-incubator</strong></span>
         <h3>Your profile</h3>
@@ -64,8 +73,7 @@ export const Profile = () => {
                  alt="avatar"/>
           </div>
           <div className={styles.info}>
-            <span>
-              Name: &#160;
+              <span>Name: &#160;</span>
               {
                 <SuperEditableSpan value={name} type="text"
                                    style={{height: "27px", width: "150px"}}
@@ -75,25 +83,13 @@ export const Profile = () => {
                                    autoFocus
                 />
               }
-            </span>
-            {
-              // editName ?
-              //   <SuperEditableSpan value={name} type="text"
-              //          onChange={changeNameHandler}
-              //          onBlur={onBlurNameHandler}
-              //          onFocus={selectAllHandler}
-              //          onKeyPress={onEnterHandler}
-              //          autoFocus
-              //   />
-              //   :
-              //   <span onDoubleClick={onDoubleClickNameHandler}>
-              //                       Name: {profileName}
-              //                   </span>
-            }
           </div>
           <div className={styles.info}>Email: {profileEmail}</div>
         </div>
-        {error && <div>error: {error}</div>}
+        <div className={styles.error}>
+          {error && <span>error: {error}</span>}
+          {localErr && <span>Note: {localErr}</span>}
+        </div>
         <div>
           <SuperButton onClick={logOutHandler}>Log Out</SuperButton>
         </div>

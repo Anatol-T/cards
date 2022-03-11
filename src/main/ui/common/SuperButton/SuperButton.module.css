@@ -8,20 +8,20 @@
     transition: .6s;
     font-size: 16px;
     line-height: 20px;
-    color: #ffffff;
-    background: #003465;
+    color: #ECECF9;
+    background: #21268F;
     border-radius: 10px;
 }
 
 .default:hover {
-    background-color: #00488B;
-    color: #ffffff;
+    background: #393ea2;
+    color: #ECECF9;
 }
 
 .default:active {
     transform: scale(1.07);
-    background-color: #00488B;
-    color: #ffffff;
+    background: #393ea2;
+    color: #ECECF9;
 }
 
 .default:disabled {

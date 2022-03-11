@@ -1,52 +1,49 @@
 import {Dispatch} from "redux";
 import {AppThunkType} from "./store";
-import {registrationAPI} from "../../API/api-registration";
+import {cardsAPI} from "../../API/api";
+import {setErrorAC, setLoadingAC} from "./appReducer";
 
 const initialState = {
-  isRegistered: false,
-  errorRegister: '',
+    isRegistered: false,
 }
 
 export const registerReducer = (state: InitialStateType = initialState, action: AuthActionsType): InitialStateType => {
-  switch (action.type) {
-    case "REGISTER/SET-REGISTER":
-      return {...state, isRegistered: action.isRegistered}
-    case 'REGISTER/SET-ERROR':
-      return {...state, errorRegister: action.errorRegister}
-    default:
-      return state
-  }
+    switch (action.type) {
+        case "REGISTER/SET-REGISTER":
+            return {...state, isRegistered: action.isRegistered}
+        default:
+            return state
+    }
 };
 
 // type
 type InitialStateType = {
-  isRegistered: boolean
-  errorRegister: string
+    isRegistered: boolean
 }
 
-export type AuthActionsType = setRegisterType | setErrorType
+export type AuthActionsType = setRegisterType
 
 // actions
 export const setRegister = (isRegistered: boolean) =>
-  ({type: 'REGISTER/SET-REGISTER', isRegistered} as const)
+    ({type: 'REGISTER/SET-REGISTER', isRegistered} as const)
 
 type setRegisterType = ReturnType<typeof setRegister>
 
-export const setRegisterError = (errorRegister: string) =>
-  ({type: 'REGISTER/SET-ERROR', errorRegister} as const)
-
-type setErrorType = ReturnType<typeof setRegisterError>
-
 // thunk
 export const registerTC = (email: string, password: string): AppThunkType => {
-  return (dispatch: Dispatch) => {
-    registrationAPI.register(email, password)
-      .then(() => {
-        dispatch(setRegister(true))
-      })
-      .catch(e => {
-        const error = e.response ? e.response.data.error : (e.message + ', more details in the console');
-        dispatch(setRegisterError(error))
-      })
-  }
+    return (dispatch: Dispatch) => {
+        dispatch(setLoadingAC(true));
+        cardsAPI.register(email, password)
+            .then(() => {
+                dispatch(setRegister(true))
+                dispatch(setErrorAC(''))
+            })
+            .catch(e => {
+                const error = e.response ? e.response.data.error : (e.message + ', more details in the console');
+                dispatch(setErrorAC(error))
+            })
+            .finally(() => {
+                dispatch(setLoadingAC(false));
+            })
+    }
 };

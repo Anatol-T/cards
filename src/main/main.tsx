@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from "./ui/header/Header";
+// import Header from "./ui/header/Header";
 
 export const Main = () => {
     return (
         <div>
-            <Header/>
+            {/*<Header/>*/}
         </div>
     );
 };

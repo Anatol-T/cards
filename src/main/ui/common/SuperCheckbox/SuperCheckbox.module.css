@@ -1,8 +1,8 @@
 .checkbox {
     appearance: none;
     position: relative;
-    background-color: #a0b5d5;
-    border: 1px solid #a0b5d5;
+    background-color: #D7D8EF;
+    border: 1px solid #D7D8EF;
     border-radius: 50%;
     cursor: pointer;
     height: 20px;
@@ -11,7 +11,7 @@
 
 .checkbox:after {
     position: absolute;
-    border: 2px solid #ffffff;
+    border: 2px solid #D7D8EF;
     border-top: none;
     border-right: none;
     content: "";
@@ -24,8 +24,8 @@
 }
 
 input[type="checkbox"]:checked {
-    background-color: #003465;
-    border-color: #003465;
+    background-color: #21268F;
+    border-color: #21268F;
 }
 
 input[type="checkbox"]:checked:after {

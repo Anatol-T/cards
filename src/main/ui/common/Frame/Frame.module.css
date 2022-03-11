@@ -6,8 +6,12 @@
 }
 
 .frame {
+    max-width: 413px;
     background: #F9F9FE;
     border-radius: 8px;
     padding: 25px 33px;
-    min-width: 350px;
+    width: 96%;
 }
+/*label {*/
+/*    display: block;*/
+/*}*/

@@ -26,7 +26,7 @@ const SuperInputPassword: React.FC<SuperInputPasswordPropsType> = (
 ) => {
     const [isShown, setIsShow] = useState<boolean>(false);
 
-    const typeInput = isShown ? 'password' : 'text';
+    const typeInput = isShown ? 'text' : 'password';
 
     const togglePassword = () => setIsShow(!isShown);
 

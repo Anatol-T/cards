@@ -1,9 +1,11 @@
-import {profileApi, UserResponseType, MePutRequestType} from "../../API/profileApi";
+// import {UserResponseType, MePutRequestType} from "../../API/profileApi";
 import {Dispatch} from "redux";
 import axios from "axios";
-import {setLoadingAC} from "./loginReducer";
+// import {setLoadingAC} from "./loginReducer";
+import {cardsAPI, updateProfileRequestType, UserResponseType} from "../../API/api";
+import {setLoadingAC} from "./appReducer";
 
-export const profileInitialState: ProfileInitialStateType = {
+export const profileInitialState: UserResponseType = {
     _id: '',
     email: '',
     name: '',
@@ -17,7 +19,7 @@ export const profileInitialState: ProfileInitialStateType = {
     created: null,
     updated: null,
 }
-export const profileReducer = (state = profileInitialState, action: ProfileActionsType): ProfileInitialStateType => {
+export const profileReducer = (state = profileInitialState, action: ProfileActionsType): UserResponseType => {
     switch (action.type) {
         case "PROFILE/SET-PROFILE-DATA":
             return {...state, ...action.data}
@@ -32,7 +34,7 @@ export const profileReducer = (state = profileInitialState, action: ProfileActio
     }
 }
 //actions
-export const setProfileData = (data: ProfileInitialStateType) => {
+export const setProfileData = (data: UserResponseType) => {
     return {type: 'PROFILE/SET-PROFILE-DATA', data} as const
 }
 export const updateProfileData = (data: UserResponseType) => {
@@ -46,9 +48,9 @@ export const setProfileDeleteData = () => {
 }
 
 // thunks
-export const updateProfile = (data: MePutRequestType) =>  (dispatch: Dispatch) => {
+export const updateProfile = (data: updateProfileRequestType) =>  (dispatch: Dispatch) => {
     dispatch(setLoadingAC(true));
-    profileApi.mePut(data)
+    cardsAPI.updateProfile(data)
       .then(res => {
           dispatch(updateProfileData(res.data.updatedUser));
       })
@@ -68,19 +70,3 @@ export type ProfileActionsType =
     | ReturnType<typeof updateProfileData>
     | ReturnType<typeof setProfileError>
     | ReturnType<typeof setProfileDeleteData>
-
-
-export type ProfileInitialStateType = {
-    _id: string
-    email: string
-    name: string
-    avatar: string
-    publicCardPacksCount: number
-    token?: string
-    created: Date | null
-    updated: Date | null
-    isAdmin: boolean
-    verified: boolean
-    rememberMe: boolean
-    error?: string
-}

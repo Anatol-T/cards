@@ -1,18 +1,3 @@
-* {
-    box-sizing: border-box;
-}
-.page {
-    background: linear-gradient(180deg, #E6D4DE 0%, #9890C7 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
-.container {
-    background: #F9F9FE;
-    border-radius: 8px;
-    padding: 25px 33px;
-}
 .input {
     margin-bottom: 20px;
     text-align: left;
@@ -20,9 +5,24 @@
 .error {
     color: red;
     font-weight: 700;
-    border: 1px solid red;
-    padding: 5px;
+    /*border: 1px solid red;*/
+    /*padding: 5px;*/
     text-align: left;
     margin-bottom: 20px;
-    max-width: 300px;
+    /*max-width: 300px;*/
+}
+.linkLogin {
+    text-decoration: none;
+}
+.signUpText {
+    display: inline;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #21268F;
+    border: 2px solid #F9F9FE;
+}
+.signUpText:hover {
+    border-bottom: 2px solid #21268F;
 }
