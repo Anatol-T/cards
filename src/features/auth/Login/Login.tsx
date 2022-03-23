@@ -12,6 +12,7 @@ import {Frame} from "../../../main/ui/common/Frame/Frame";
 import SuperInputPassword from "../../../main/ui/common/SuperInputPassword/SuperInputPassword";
 import Preloader from "../../../main/ui/common/Preloader/Preloader";
 import {setRegister} from "../../../main/bll/registerReducer";
+import {setErrorAC} from "../../../main/bll/appReducer";
 
 export const Login = () => {
     const [email, setEmail] = useState<string>('');
@@ -28,7 +29,7 @@ export const Login = () => {
     };
 
     useEffect(() => {
-        dispatch(setRegister(false));
+        dispatch(setErrorAC(''))
     }, [])
 
     if (loginStatus) {
@@ -65,8 +66,9 @@ export const Login = () => {
                                    onChange={() => setRememberMe(!rememberMe)}/>
                     <p>Remember me</p>
                 </div>
-                <NavLink to={PATH.FORGOT_YOUR_PASSWORD} className={styles.linkLogin}><p
-                    className={styles.forgotText}>Forgot Password</p></NavLink>
+                <p className={styles.forgotText}>
+                <NavLink to={PATH.FORGOT_YOUR_PASSWORD} className={styles.linkLogin}>Forgot Password</NavLink>
+                </p>
                 <SuperButton onClick={loginHandler}>Login</SuperButton>
                 <p>Don’t have an account?</p>
                 <NavLink to={PATH.REGISTRATION} className={styles.linkLogin}>

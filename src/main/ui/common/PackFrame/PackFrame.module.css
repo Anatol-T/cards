@@ -1,0 +1,11 @@
+.packFrame {
+    max-width: 1200px;
+    background: #F9F9FE;
+    border-radius: 8px;
+    width: 96%;
+    margin: 24px auto;
+    display: flex;
+    overflow: hidden;
+    height: 86vh;
+    text-align: left;
+}

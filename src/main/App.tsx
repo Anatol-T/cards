@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import {Main} from "./Main";
 import {RoutesComponent} from "./ui/routes/Routes";
 import {useDispatch, useSelector} from "react-redux";
 import {initializeAppTC} from "./bll/appReducer";
@@ -22,7 +21,7 @@ const App = () => {
 
     return (
         <div className="App">
-            <Main/>
+            {/*<Main/>*/}
             <RoutesComponent/>
         </div>
     );

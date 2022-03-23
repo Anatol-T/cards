@@ -5,29 +5,31 @@
     cursor: pointer;
     text-align: center;
     padding: 10px 60px;
-    transition: .6s;
     font-size: 16px;
     line-height: 20px;
     color: #ECECF9;
     background: #21268F;
-    border-radius: 10px;
+    border-radius: 30px;
+    /*transition: 0.4s all;*/
 }
 
 .default:hover {
-    background: #393ea2;
+    background: #272c96;
     color: #ECECF9;
+    box-shadow: 0px 4px 18px rgba(33, 38, 143, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
 }
 
 .default:active {
-    transform: scale(1.07);
-    background: #393ea2;
+    transform: scale(1.02);
+    background: #272c96;
     color: #ECECF9;
+    box-shadow: 0px 4px 18px rgba(33, 38, 143, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
 }
 
 .default:disabled {
     cursor: default;
     transform: none;
-    background-color: #465D74;
+    background-color: rgba(39, 44, 150, 0.9);
 }
 
 .red {
@@ -36,15 +38,28 @@
     cursor: pointer;
     text-align: center;
     padding: 10px 60px;
-    transition: .6s;
     font-size: 16px;
     line-height: 20px;
     color: #ffffff;
-    background: #003465;
-    border-radius: 10px;
+    background: #F1453D;
+    border-radius: 30px;
+    transition: 0.4s all;
 }
 
 .red:hover {
-    background-color: #00488B;
+    background-color: darkred;
     color: #ffffff;
+    box-shadow: 0px 4px 18px rgba(137, 0, 0, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+}
+
+.red:active {
+    transform: scale(1.02);
+    background-color: darkred;
+    color: #ffffff;
+    box-shadow: 0px 4px 18px rgba(137, 0, 0, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+}
+
+.light {
+    background: #D7D8EF;
+    color: #21268F;
 }

@@ -2,11 +2,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
+    padding: 30px 0;
 }
 
 .frame {
-    max-width: 413px;
+    max-width: 430px;
     background: #F9F9FE;
     border-radius: 8px;
     padding: 25px 33px;

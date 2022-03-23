@@ -1,7 +1,37 @@
 .input{
-    color: #21268F;
+    color: grey;
     cursor: pointer;
 
     display: inline-block;
     height: 27px;
+}
+.prompt {
+    opacity: 0;
+    color: #21268F;
+    visibility: hidden;
+    position: absolute;
+    bottom: 25px;
+    left: 10px;
+    font-size: 0.7em;
+    width: 150px;
+    transition: 0.5s opacity;
+    border: solid #21268F 1px;
+    text-align: center;
+    border-radius: 5px ;
+}
+.prompt::after {
+    content: "";
+    position: absolute;
+    bottom: -60%;
+    right: 50%;
+    margin-top: -5px;
+    border: 5px solid transparent;
+    border-top-color: #21268F;
+}
+.editableSpan {
+    position: relative;
+}
+.input:hover~.prompt {
+    opacity: 1;
+    visibility: visible;
 }

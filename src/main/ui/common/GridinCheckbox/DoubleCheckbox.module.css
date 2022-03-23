@@ -1,0 +1,32 @@
+.label {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #9A91C8;
+}
+
+.tab {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    width: 100px;
+    height: 40px;
+    background-color: white;
+}
+
+.selected {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    color: white;
+    width: 100px;
+    height: 40px;
+    background-color: #9A91C8;
+}

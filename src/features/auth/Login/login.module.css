@@ -4,11 +4,11 @@
 }
 
 .error {
-    color: #b60004;
+    color: red;
     font-weight: 700;
     /*border: 1px solid #b60004;*/
     padding: 5px;
-    text-align: center;
+    text-align: left;
     margin-bottom: 20px;
     max-width: 300px;
 }

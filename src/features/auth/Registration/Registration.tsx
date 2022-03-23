@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import SuperButton from "../../../main/ui/common/SuperButton/SuperButton";
 import {useDispatch, useSelector} from "react-redux";
-import {registerTC} from "../../../main/bll/registerReducer";
+import {registerTC, setRegister} from "../../../main/bll/registerReducer";
 import {AppRootStateType} from "../../../main/bll/store";
 import {Navigate, NavLink} from "react-router-dom";
 import s from './Registration.module.css';
@@ -22,6 +22,13 @@ export const Registration = () => {
     const loading = useSelector<AppRootStateType, boolean>(state => state.app.isLoading);
     const dispatch = useDispatch();
 
+    // ????? НУЖНО РАЗДЕЛЕНИЕ ОШИБОК ?????
+    useEffect(() => {
+        return () => {
+            dispatch(setRegister(false));
+            dispatch(setErrorAC(''))
+        }
+    }, [])
 
     const onClickHandler = () => {
         if (password !== confirmPassword) {
@@ -63,7 +70,7 @@ export const Registration = () => {
                 <SuperButton onClick={onClickHandler}>Register</SuperButton>
                 <p>
                     <NavLink to={PATH.LOGIN} className={s.linkLogin}>
-                     <p className={s.signUpText}>To login</p>
+                        <p className={s.signUpText}>To login</p>
                     </NavLink>
                 </p>
             </Frame>

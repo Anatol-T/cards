@@ -9,6 +9,9 @@ import {Test} from "../../../features/Test";
 import ForgotYourPassword from '../../../features/auth/Password/ForgotYourPassword/ForgotYourPassword';
 import {PasswordRecovery1} from "../../../features/auth/Password/PasswordRecovery/PasswordRecovery1";
 import CheckEmail from "../../../features/auth/Password/CheckEmail/CheckEmail";
+import PacksList from "../../../features/packsList/PacksList";
+import Cards from "../../../features/cards/Cards";
+import {Learn} from "../../../features/learn/Learn";
 
 export const PATH = {
     LOGIN: '/login',
@@ -21,6 +24,8 @@ export const PATH = {
     CARDS: '/cards',
     FORGOT_YOUR_PASSWORD: '/forgot',
     CHECK_EMAIL: '/check-email',
+    PACKS: '/packs',
+    LEARN: '/learn',
 }
 
 export const RoutesComponent = () => {
@@ -38,6 +43,14 @@ export const RoutesComponent = () => {
                 <Route path={PATH.FORGOT_YOUR_PASSWORD} element={<ForgotYourPassword/>}/>
                 <Route path={PATH.CHECK_EMAIL} element={<CheckEmail/>}/>
                 {/*<Route path={PATH.TEST} element={<Test/>}/>*/}
+                <Route path={PATH.PACKS} element={<PacksList/>}/>
+                <Route path={PATH.CARDS + '/:packId'} element={<Cards/>}/>
+
+                <Route path={PATH.LEARN + '/:packId'} element={<Learn/>}/>
+
+
+
+                <Route path={PATH.TEST} element={<Test/>}/>
                 <Route path={"/*"} element={<Error404/>}/>
             </Routes>
         </>

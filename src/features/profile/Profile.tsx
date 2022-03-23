@@ -11,6 +11,7 @@ import {logoutTC} from "../../main/bll/loginReducer";
 import SuperEditableSpan from "../../main/ui/common/SuperEditableSpan/SuperEditableSpan";
 import {PATH} from "../../main/ui/routes/Routes";
 import Preloader from "../../main/ui/common/Preloader/Preloader";
+import Header from "../../main/ui/header/Header";
 
 export const Profile = () => {
   const dispatch = useDispatch();
@@ -21,12 +22,13 @@ export const Profile = () => {
   const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.login.status);
   const loading = useSelector<AppRootStateType, boolean>(state => state.app.isLoading);
 
+
   const [name, setName] = useState(profileName);
   const [localErr, setLocalErr] = useState<string>('')
 
-  useEffect(()=>{
-    setName(profileName)
-  }, [profileName])
+  // useEffect(()=>{
+  //   setName(profileName)
+  // }, [profileName])
 
   const onBlurNameHandler = () => {
     onSubmitName();
@@ -63,6 +65,7 @@ export const Profile = () => {
   }
   return (
     <>
+      <Header/>
       {loading && <Preloader/>}
       <Frame>
         <span><strong>It-incubator</strong></span>
@@ -73,7 +76,7 @@ export const Profile = () => {
                  alt="avatar"/>
           </div>
           <div className={styles.info}>
-              <span>Name: &#160;</span>
+            <span>Name: &#160;</span>
               {
                 <SuperEditableSpan value={name} type="text"
                                    style={{height: "27px", width: "150px"}}

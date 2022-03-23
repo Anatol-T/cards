@@ -1,0 +1,24 @@
+.select {
+    color: #21268F;
+    appearance: none;
+    min-width: 45px;
+    min-height: 25px;
+    outline: none;
+    border: 1px solid #6d70d5;
+    background: url("editIcon.png") 98%/20px no-repeat;
+    border-radius: 2px;
+    margin: 0 5px;
+    font-family: Bahnschrift, sans-serif;
+    font-size: 16px;
+    padding-left: 5px;
+    /*text-align: center;*/
+}
+
+.options {
+    background: whitesmoke;
+    color: #21268F;
+}
+
+.options:checked {
+    background-color: #6d70d5;
+}

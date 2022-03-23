@@ -21,13 +21,14 @@ export const cardsAPI = {
     sendMail(email: string) {
         return instance.post(`auth/forgot`, {
             email: email,
-            from: "test-front-admin <ai73a@yandex.by>",
+            from: "test-front-admin <anastasiyamihalenko@gmail.com>",
             message: `<div style="text-align: center; background-color: #F9F9FE; width: 50%; margin: 20px auto; border-radius: 20px; padding: 20px">
             <div style="background-color: #D7D8EF; padding: 15px; display: inline-block; border-radius: 50%">
                 <img src="https://img.icons8.com/external-bearicons-detailed-outline-bearicons/64/000000/external-Letter-business-and-marketing-bearicons-detailed-outline-bearicons.png" alt="#"/>
             </div>
             <p style="font-size: 17px; color: #2D2E46">We heard you need a password reset. Click the link below, and you'll be redirected to a site from which you can set a new password.</p>
-            <a style="text-decoration: none; color: white; background-color: #21268F; outline: none; border: none; padding: 15px 20px;border-radius: 7px"href='http://localhost:3000/#/set-new-password/$token$'>Reset password</a>
+            <a style="text-decoration: none; color: white; background-color: #21268F; outline: none; border: none; padding: 15px 20px;border-radius: 7px;"
+            href='http://localhost:3000/#/set-new-password/$token$'>Reset password</a>
         </div>`
         })
     },

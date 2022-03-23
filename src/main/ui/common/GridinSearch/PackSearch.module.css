@@ -1,0 +1,66 @@
+.wrap{
+    position: relative;
+    display: block;
+    /*width: 80%;*/
+}
+
+.wrap input {
+    background: rgba(236, 236, 249, 0.5);
+    /*opacity: 0.5;*/
+    border: 1px solid rgba(99, 93, 128, 0.5);
+    box-sizing: border-box;
+    border-radius: 2px;
+    height: 36px;
+    width: 100%;
+    padding: 10px;
+    color: #2D2E46;
+}
+
+.wrap input:focus {
+    outline: none;
+    border: 1px solid #2D2E46;
+}
+
+.wrap .btnSearch {
+    position: absolute;
+    height: 100%;
+    width: 70px;
+    right: 0;
+    border: 1px solid rgba(99, 93, 128, 0.5);
+    background: #D7D8EF url(../GridinSearch/IconSearch.svg) no-repeat center/auto 80%;
+    cursor: pointer;
+    z-index: 2;
+    top: 0;
+    opacity: 1;
+}
+
+
+/*.searchBtn{*/
+/*    border: 1px solid grey;*/
+/*    cursor: pointer;*/
+/*    width: 30px;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+
+/*}*/
+
+
+/*background: url(../GridinSearch/IconSearch.svg) no-repeat center/contain;*/
+
+
+
+/*.wrap{*/
+/*    color: black;*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*}*/
+/*.searchBtn{*/
+/*    border: 1px solid grey;*/
+/*    cursor: pointer;*/
+/*    width: 30px;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+
+/*}*/
