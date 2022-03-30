@@ -8,14 +8,13 @@ import {PATH} from "../../main/ui/routes/Routes";
 import {addCardTC, changeCurrentPageCardsAC, fetchCardsTC, setPageCountCardsAC} from "../../main/bll/cardsReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../main/bll/store";
-import {CardType} from "../../API/cardsApi";
+import {CardType} from "../../main/dal/cardsApi";
 import {Pagination} from "../../main/ui/common/Pagination/Pagination";
 import {CardsSearch} from "../../main/ui/common/GridinSearch/CardsSearch";
-import {PageSizeSelector} from "../../main/ui/pageSizeSelector/PageSizeSelector";
+import {PageSizeSelector} from "../../main/ui/common/pageSizeSelector/PageSizeSelector";
 import backPage from "../../assets/images/backPage.svg"
 import SuperButton from "../../main/ui/common/SuperButton/SuperButton";
 import Modal from "../../main/ui/common/Modal/Modal";
-import SuperInputText from "../../main/ui/common/SuperInputText/SuperInputText";
 import ModalButtonsWrap from "../../main/ui/common/Modal/ModalButtonsWrap";
 import SuperTextArea from "../../main/ui/common/SuperTextArea/SuperTextArea";
 
@@ -23,6 +22,7 @@ const Cards = () => {
     const myId = useSelector<AppRootStateType, string>(state => state.profilePage._id);
     const userId = useSelector<AppRootStateType, string>(state => state.cards.packUserId);
     const dispatch = useDispatch();
+    const isLoading = useSelector<AppRootStateType, boolean>(state => state.app.isLoading)
     const packName = useSelector<AppRootStateType, string>(state => state.cardsPack.packName);
     const cards = useSelector<AppRootStateType, Array<CardType>>(state => state.cards.cards);
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.login.status);
@@ -44,7 +44,7 @@ const Cards = () => {
 
     useEffect(() => {
         if (packId) {
-            dispatch(fetchCardsTC(packId))
+            if (!isLoading) dispatch(fetchCardsTC(packId))
         }
     }, [page, pageCount, cardQuestion, cardAnswer, sortCards])
 
@@ -92,23 +92,23 @@ const Cards = () => {
                                 : <>
                                     <Pagination totalCount={cardsTotalCount} pageSize={pageCount} currentPage={page}
                                                 onChangedPage={onChangedPage}/>
+                                    <PageSizeSelector
+                                        totalCount={cardsTotalCount}
+                                        pageCount={pageCount} handler={pageSizeHandler}/>
                                 </>
                         }
-                        <PageSizeSelector pageCount={pageCount} handler={pageSizeHandler}/>
                     </div>
                 </div>
             </PackFrame>
             <Modal title={'Card Info'} show={isModalAdd} closeModal={closeModal}>
                 <div className={styles.textArea}>
-                <label>Question</label>
+                    <label>Question</label>
                     <SuperTextArea value={newCardQuestion} onChangeText={setNewCardQuestion}/>
-                {/*<SuperInputText value={newCardQuestion} onChangeText={setNewCardQuestion}/>*/}
                 </div>
-                    <div className={styles.textArea}>
-                <label>Answer</label>
-                        <SuperTextArea value={newCardAnswer} onChangeText={setNewCardAnswer}/>
-                {/*<SuperInputText value={newCardAnswer} onChangeText={setNewCardAnswer}/>*/}
-                    </div>
+                <div className={styles.textArea}>
+                    <label>Answer</label>
+                    <SuperTextArea value={newCardAnswer} onChangeText={setNewCardAnswer}/>
+                </div>
                 <ModalButtonsWrap closeModal={closeModal}>
                     <SuperButton onClick={addCard}>Save</SuperButton>
                 </ModalButtonsWrap>

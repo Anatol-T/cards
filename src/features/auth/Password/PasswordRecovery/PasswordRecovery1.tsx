@@ -3,8 +3,7 @@ import {Frame} from "../../../../main/ui/common/Frame/Frame";
 import SuperInputPassword from "../../../../main/ui/common/SuperInputPassword/SuperInputPassword";
 import SuperButton from "../../../../main/ui/common/SuperButton/SuperButton";
 import {useDispatch, useSelector} from "react-redux";
-// import {changePassTC} from "../../../../main/bll/newPasswordReducer";
-import {Navigate, NavLink, useParams} from "react-router-dom";
+import {Navigate, useParams} from "react-router-dom";
 import {AppRootStateType} from "../../../../main/bll/store";
 import {PATH} from "../../../../main/ui/routes/Routes";
 import styles from "./passwordRecovery1.module.css";
@@ -21,7 +20,6 @@ export const PasswordRecovery1 = () => {
     const dispatch = useDispatch()
     const {token} = useParams<{ token: string }>();
 
-    // ????? НУЖНО РАЗДЕЛЕНИЕ ОШИБОК ?????
     useEffect(() => {
         dispatch(setErrorAC(''))
     }, [])
@@ -53,7 +51,7 @@ export const PasswordRecovery1 = () => {
                     />
                 </div>
                 <p>Create new password and we will send you further instructions to email</p>
-                <SuperButton onClick={newPasswordHandler}>Create new password</SuperButton>
+                <SuperButton onClick={newPasswordHandler} style={{padding: '10px 60px'}}>Create new password</SuperButton>
             </Frame>
         </>
     )

@@ -35,6 +35,13 @@
 }
 
 
+@media (max-width: 630px) {
+    .wrap .btnSearch {
+        width: 50px;
+    }
+}
+
+
 /*.searchBtn{*/
 /*    border: 1px solid grey;*/
 /*    cursor: pointer;*/

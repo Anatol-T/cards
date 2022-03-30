@@ -1,11 +1,11 @@
 import axios, {AxiosResponse} from 'axios';
 
 export const instance = axios.create({
-    baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',
+    baseURL: 'https://neko-back.herokuapp.com/2.0' || 'http://localhost:7542/2.0/',
     withCredentials: true,
 })
 
-export const cardsAPI = {
+export const authAndProfileApi = {
     me() {
         return instance.post<UserResponseType>('/auth/me')
     },
@@ -28,7 +28,7 @@ export const cardsAPI = {
             </div>
             <p style="font-size: 17px; color: #2D2E46">We heard you need a password reset. Click the link below, and you'll be redirected to a site from which you can set a new password.</p>
             <a style="text-decoration: none; color: white; background-color: #21268F; outline: none; border: none; padding: 15px 20px;border-radius: 7px;"
-            href='http://localhost:3000/#/set-new-password/$token$'>Reset password</a>
+            href='https://nastassiamikhalenka.github.io/projectcards/#/set-new-password/$token$'>Reset password</a>
         </div>`
         })
     },

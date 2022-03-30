@@ -53,7 +53,7 @@ const ForgotYourPassword = () => {
                     />
                 </div>
                 <p>Enter your email address and we will send you further instructions</p>
-                <SuperButton onClick={onClickHandler}>Send instructions</SuperButton>
+                <SuperButton onClick={onClickHandler} style={{padding: '10px 60px'}}>Send instructions</SuperButton>
                 <p>Did you remember your password?</p>
                 <NavLink to={PATH.LOGIN} className={styles.linkLogin}>
                     <p className={styles.signUpText}>Try logging in</p>

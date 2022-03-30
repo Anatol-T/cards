@@ -1,5 +1,5 @@
 // КОЛОДЫ
-import {AddCardsPackParamsType, cardsPackApi, PacksResponseType, PackType} from "../../API/cardsPackApi";
+import {cardsPackApi, PacksResponseType, PackType} from "../dal/cardsPackApi";
 import {setErrorAC, setLoadingAC} from "./appReducer";
 import {Dispatch} from "redux";
 import {AppRootStateType, AppThunkType} from "./store";
@@ -17,6 +17,7 @@ const initialState = {
     max: 0,
     packName: '',
     user_id: '',
+    debouncingFlag: {},
 }
 
 export const cardsPackReducer = (state: InitialStateType = initialState, action: CardsPackActionsType): InitialStateType => {
@@ -26,7 +27,13 @@ export const cardsPackReducer = (state: InitialStateType = initialState, action:
         case 'PACKS/SORT':
             return {...state, sortPacks: action.sortPacks, page: 1}
         case 'PACKS/SET_MY_PACKS':
-            return {...state, myPacks: action.myPacks, min: 0}
+            return {
+                ...state,
+                myPacks: action.myPacks,
+                min: 0,
+                max: 0,
+                packName: ''
+            }
         case "PACKS/CHANGE_CURRENT_PAGE":
             return {...state, page: action.page}
         case "PACKS/SET_MIN":
@@ -34,9 +41,11 @@ export const cardsPackReducer = (state: InitialStateType = initialState, action:
         case "PACKS/SET_MAX":
             return {...state, max: action.max}
         case "PACKS/SET_PAGE_COUNT":
-            return {...state, pageCount: action.pageCount}
+            return {...state, pageCount: action.pageCount, page: 1}
         case "PACKS/SET_FILTERED_PACKS":
             return {...state, packName: action.packName}
+        case "PACKS/SET_DEBOUNCING_FLAG":
+            return {...state, debouncingFlag: {}, page: 1}
         default:
             return state
     }
@@ -56,10 +65,11 @@ type InitialStateType = {
     max: number
     packName: string
     user_id: string
+    debouncingFlag: object
 }
 
 export type CardsPackActionsType = SetPacksListsACType | SortPacksACType | SetMyPacksACType | setFilteredPacksACType
-    | ChangeCurrentPageACType | SetMinACType | SetMaxACType | SetPageCountACType
+    | ChangeCurrentPageACType | SetMinACType | SetMaxACType | SetPageCountACType | SetDebouncingFlagACType
 // Action creators
 export const setPacksListsAC = (data: PacksResponseType) =>
     ({type: 'PACKS/SET_PACKS_LIST', data} as const)
@@ -96,6 +106,10 @@ export const setFilteredPacksAC = (packName: string) =>
     ({type: 'PACKS/SET_FILTERED_PACKS', packName} as const)
 type setFilteredPacksACType = ReturnType<typeof setFilteredPacksAC>
 
+export const setDebouncingFlagAC = () =>
+    ({type: 'PACKS/SET_DEBOUNCING_FLAG'} as const)
+type SetDebouncingFlagACType = ReturnType<typeof setDebouncingFlagAC>
+
 // Thunk creators
 export const fetchPacksListsTC = () => {
     return (dispatch: Dispatch, getState: () => AppRootStateType) => {
@@ -127,36 +141,36 @@ export const deletePackTC = (packId: string): AppThunkType => {
         dispatch(setLoadingAC(true))
 
         cardsPackApi.deletePack(packId)
-            .then((res) => {
+            .then(() => {
                 dispatch(fetchPacksListsTC())
             })
             .catch(e => {
                 const error = e.response ? e.response.data.error : (e.message + ', more details in the console');
                 dispatch(setErrorAC(error))
-            })
-            .finally(() => {
                 dispatch(setLoadingAC(false));
             })
     }
 }
 
-export const addPackTC = (packName: string): AppThunkType => {
+export const addPackTC = (packName: string, privateValue: boolean): AppThunkType => {
     return (dispatch) => {
         dispatch(setLoadingAC(true))
+        dispatch(sortPacksAC("0updated"))
 
         const payload = {
             name: packName,
             deckCover: '',
-            private: false
+            private: privateValue
         }
 
         cardsPackApi.addPack(payload)
-            .then((res) => {
+            .then(() => {
                 dispatch(fetchPacksListsTC())
             })
             .catch(e => {
                 const error = e.response ? e.response.data.error : (e.message + ', more details in the console');
                 dispatch(setErrorAC(error))
+                dispatch(setLoadingAC(false))
             })
     }
 }
@@ -171,7 +185,7 @@ export const editPackTC = (_id: string, packName: string): AppThunkType => {
         }
 
         cardsPackApi.updatePack(payload)
-            .then((res) => {
+            .then(() => {
                 dispatch(fetchPacksListsTC())
             })
             .catch(e => {

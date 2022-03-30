@@ -11,17 +11,20 @@ import {addPackTC, changeCurrentPageAC, fetchPacksListsTC, setPageCountAC} from 
 import {Navigate} from "react-router-dom";
 import {PATH} from "../../main/ui/routes/Routes";
 import {Pagination} from "../../main/ui/common/Pagination/Pagination";
-import {PageSizeSelector} from "../../main/ui/pageSizeSelector/PageSizeSelector";
+import {PageSizeSelector} from "../../main/ui/common/pageSizeSelector/PageSizeSelector";
 import {PacksSearch} from "../../main/ui/common/GridinSearch/PacksSearch";
 import Modal from "../../main/ui/common/Modal/Modal";
 import SuperInputText from "../../main/ui/common/SuperInputText/SuperInputText";
 import ModalButtonsWrap from "../../main/ui/common/Modal/ModalButtonsWrap";
+import {setErrorAC} from "../../main/bll/appReducer";
+import SuperCheckbox from "../../main/ui/common/SuperCheckbox/SuperCheckbox";
 
 const PacksList = () => {
     const dispatch = useDispatch();
     const error = useSelector<AppRootStateType, string>(state => state.app.error);
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.login.status);
-    //const min = useSelector<AppRootStateType, number>(state => state.cardsPack.min)
+    const isLoading = useSelector<AppRootStateType, boolean>(state => state.app.isLoading)
+    const debouncingFlag = useSelector<AppRootStateType, object>(state => state.cardsPack.debouncingFlag)
     //const max = useSelector<AppRootStateType, number>(state => state.cardsPack.max)
     const page = useSelector<AppRootStateType, number>(state => state.cardsPack.page)
     const pageCount = useSelector<AppRootStateType, number>(state => state.cardsPack.pageCount)
@@ -29,28 +32,38 @@ const PacksList = () => {
     const sortPacks = useSelector<AppRootStateType, string>(state => state.cardsPack.sortPacks)
     const cardPacksTotalCount = useSelector<AppRootStateType, number>(state => state.cardsPack.cardPacksTotalCount)
     const packName = useSelector<AppRootStateType, string>(state => state.cardsPack.packName)
-    //const [id, setId] = useState(0)
 
     const [newPackName, setNewPackName] = useState<string>('');
+    const [privateValue, setPrivateValue] = useState<boolean>(false);
     const [isModal, setIsModal] = useState<boolean>(false);
 
     const showModal = () => setIsModal(true);
     const closeModal = () => setIsModal(false);
 
     useEffect(() => {
-        dispatch(fetchPacksListsTC())
-    }, [page, pageCount, myPacks, sortPacks, packName])
+        if (!isLoading) {
+            dispatch(fetchPacksListsTC())
+        }
+    }, [page, pageCount, myPacks, sortPacks, packName, debouncingFlag])
+
+    useEffect(() => {
+        return () => {
+            if (error.length > 0) dispatch(setErrorAC(''))
+        }
+    })
 
 
     const pageSizeHandler = (value: number) => {
-        dispatch(setPageCountAC(value))
+        if (!isLoading) dispatch(setPageCountAC(value))
     }
     const onChangedPage = (newPage: number) => {
+        if (isLoading) return
         if (newPage !== page) dispatch(changeCurrentPageAC(newPage))
     }
     const addPack = () => {
-        dispatch(addPackTC(newPackName))
+        dispatch(addPackTC(newPackName, privateValue))
         setNewPackName('')
+        setPrivateValue(false)
         closeModal()
     }
 
@@ -77,19 +90,27 @@ const PacksList = () => {
                         {
                             cardPacksTotalCount < pageCount
                                 ? <></>
-                                : <Pagination totalCount={cardPacksTotalCount}
-                                              pageSize={pageCount}
-                                              currentPage={page}
-                                              onChangedPage={onChangedPage}/>
+                                : <>
+                                    <Pagination totalCount={cardPacksTotalCount}
+                                                pageSize={pageCount}
+                                                currentPage={page}
+                                                onChangedPage={onChangedPage}/>
+                                    <PageSizeSelector
+                                        totalCount={cardPacksTotalCount}
+                                        pageCount={pageCount}
+                                        handler={pageSizeHandler}/>
+                                </>
                         }
-                        <PageSizeSelector pageCount={pageCount}
-                                          handler={pageSizeHandler}/>
                     </div>
                 </div>
             </PackFrame>
             <Modal title={'Add new pack'} show={isModal} closeModal={closeModal}>
                 <label>Name pack</label>
                 <SuperInputText value={newPackName} onChangeText={setNewPackName} placeholder={'Enter pack name'}/>
+                <div className={styles.containerCheckBox}>
+                    <SuperCheckbox checked={privateValue} onChangeChecked={setPrivateValue}/>
+                    <span>Private Pack</span>
+                </div>
                 <ModalButtonsWrap closeModal={closeModal}>
                     <SuperButton onClick={addPack}>Save</SuperButton>
                 </ModalButtonsWrap>

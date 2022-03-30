@@ -5,12 +5,10 @@ import {
     GetCardsGrade,
     GetCardsParamsType,
     updatedGradeType
-} from "../../API/cardsApi";
+} from "../dal/cardsApi";
 import {AppRootStateType, AppThunkType} from "./store";
 import {Dispatch} from "redux";
 import {setErrorAC, setLoadingAC} from "./appReducer";
-import {cardsPackApi} from "../../API/cardsPackApi";
-import {fetchPacksListsTC} from "./cardsPackReducer";
 
 const initialState = {
     cards: [],
@@ -26,7 +24,7 @@ const initialState = {
     tokenDeathTime: 0,
     cardAnswer: "",
     cardQuestion: '',
-    grade: 0
+    grade: 0,
 }
 
 export const cardsReducer = (state: InitialStateType = initialState, action: CardsActionsType): InitialStateType => {
@@ -38,7 +36,7 @@ export const cardsReducer = (state: InitialStateType = initialState, action: Car
         case "CARDS/CHANGE_CURRENT_PAGE":
             return {...state, page: action.page}
         case 'CARDS/SORT_CARDS':
-            return {...state, sortCards: action.sortCards}
+            return {...state, sortCards: action.sortCards, page: 1}
         case 'CARDS/SET_FILTER_CARDS':
             return {...state, cardQuestion: action.cardQuestion}
         case 'CARDS/SET_PAGE_COUNT_CARDS':
@@ -55,7 +53,7 @@ export const cardsReducer = (state: InitialStateType = initialState, action: Car
 };
 
 // type
-type InitialStateType = {
+export type InitialStateType = {
     cards: Array<CardType>
     cardsTotalCount: number
     maxGrade: number
@@ -76,7 +74,7 @@ export type CardsActionsType = cardsReducerACType | ChangeCurrentPageCardsACType
     | SortCardsACACType | setFilterReducerACType | SetPageCountCardsACType
     | ClearCardsACType | SetCardsGradeACType
 
-export const cardsReducerAC = (data: InitialStateType) => {
+export const setCardsAC = (data: InitialStateType) => {
     return {type: 'CARDS/SET_CARD', data} as const;
 };
 export const clearCardsAC = () => {
@@ -88,7 +86,7 @@ export const setFilterReducerAC = (cardQuestion: string) => {
     return {type: 'CARDS/SET_FILTER_CARDS', cardQuestion} as const;
 };
 
-type cardsReducerACType = ReturnType<typeof cardsReducerAC>
+type cardsReducerACType = ReturnType<typeof setCardsAC>
 type setFilterReducerACType = ReturnType<typeof setFilterReducerAC>
 
 export const changeCurrentPageCardsAC = (page: number) =>
@@ -124,7 +122,7 @@ export const fetchCardsTC = (packUserId: string) =>
         }
         cardsApi.getCards(data)
             .then((res) => {
-                dispatch(cardsReducerAC(res.data));
+                dispatch(setCardsAC(res.data));
             })
             .catch(e => {
                 const error = e.response ? e.response.data.error : (e.message + ', more details in the console');
@@ -150,7 +148,7 @@ export const learnCardsTC = (packUserId: string) =>
         }
         cardsApi.getCards(data)
             .then((res) => {
-                dispatch(cardsReducerAC(res.data));
+                dispatch(setCardsAC(res.data));
             })
             .catch(e => {
                 const error = e.response ? e.response.data.error : (e.message + ', more details in the console');
@@ -186,6 +184,8 @@ export const CardsGradeTC = (cardId: string, grade: number) =>
 export const addCardTC = (packUserId: string, question: string, answer: string): AppThunkType => {
     return (dispatch) => {
         dispatch(setLoadingAC(true))
+        dispatch(sortCardsAC('0updated'))
+
         const payload = {
             cardsPack_id: packUserId,
             question: question,
@@ -204,8 +204,6 @@ export const addCardTC = (packUserId: string, question: string, answer: string):
             .catch(e => {
                 const error = e.response ? e.response.data.error : (e.message + ', more details in the console');
                 dispatch(setErrorAC(error))
-            })
-            .finally(() => {
                 dispatch(setLoadingAC(false));
             })
     }
@@ -216,14 +214,12 @@ export const deleteCardTC = (packUserId: string, cardId: string): AppThunkType =
         dispatch(setLoadingAC(true))
 
         cardsApi.deleteCard(cardId)
-            .then((res) => {
+            .then(() => {
                 dispatch(fetchCardsTC(packUserId))
             })
             .catch(e => {
                 const error = e.response ? e.response.data.error : (e.message + ', more details in the console');
                 dispatch(setErrorAC(error))
-            })
-            .finally(() => {
                 dispatch(setLoadingAC(false));
             })
     }
@@ -248,8 +244,6 @@ export const updateCardTC = (packUserId: string, cardId: string, question: strin
             .catch(e => {
                 const error = e.response ? e.response.data.error : (e.message + ', more details in the console');
                 dispatch(setErrorAC(error))
-            })
-            .finally(() => {
                 dispatch(setLoadingAC(false));
             })
     }

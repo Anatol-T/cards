@@ -2,18 +2,18 @@
     margin-bottom: 20px;
     text-align: left;
 }
+
 .error {
     color: red;
     font-weight: 700;
-    /*border: 1px solid red;*/
-    /*padding: 5px;*/
     text-align: left;
     margin-bottom: 20px;
-    /*max-width: 300px;*/
 }
+
 .linkLogin {
     text-decoration: none;
 }
+
 .signUpText {
     display: inline;
     font-style: normal;
@@ -23,6 +23,7 @@
     color: #21268F;
     border: 2px solid #F9F9FE;
 }
+
 .signUpText:hover {
     border-bottom: 2px solid #21268F;
 }

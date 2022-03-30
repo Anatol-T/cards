@@ -17,6 +17,14 @@
     object-fit: cover;
 }
 
+.profileTitle {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 33px;
+    color: #2D2E46;
+}
+
 .info {
     display: flex;
     padding-bottom: 10px;

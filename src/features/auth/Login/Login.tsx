@@ -11,7 +11,6 @@ import {PATH} from "../../../main/ui/routes/Routes";
 import {Frame} from "../../../main/ui/common/Frame/Frame";
 import SuperInputPassword from "../../../main/ui/common/SuperInputPassword/SuperInputPassword";
 import Preloader from "../../../main/ui/common/Preloader/Preloader";
-import {setRegister} from "../../../main/bll/registerReducer";
 import {setErrorAC} from "../../../main/bll/appReducer";
 
 export const Login = () => {
@@ -67,9 +66,9 @@ export const Login = () => {
                     <p>Remember me</p>
                 </div>
                 <p className={styles.forgotText}>
-                <NavLink to={PATH.FORGOT_YOUR_PASSWORD} className={styles.linkLogin}>Forgot Password</NavLink>
+                    <NavLink to={PATH.FORGOT_YOUR_PASSWORD} className={styles.linkLogin}>Forgot Password</NavLink>
                 </p>
-                <SuperButton onClick={loginHandler}>Login</SuperButton>
+                <SuperButton onClick={loginHandler} style={{padding: '10px 60px'}}>Login</SuperButton>
                 <p>Don’t have an account?</p>
                 <NavLink to={PATH.REGISTRATION} className={styles.linkLogin}>
                     <p className={styles.signUpText}>Sign Up</p>

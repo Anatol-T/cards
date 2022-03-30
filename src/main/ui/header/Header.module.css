@@ -65,6 +65,7 @@ nav a:hover {
     font-size: 17px;
     border-bottom: 2px solid transparent;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .btnLogout:hover,
@@ -73,4 +74,14 @@ nav a:hover {
     background-color: #DCCCDB;
     opacity: 1;
     border-bottom: 2px #21268F solid;
+}
+
+@media (max-width: 553px) {
+    .header {
+        position: inherit;
+    }
+
+    .btnLogoutContainer {
+        position: inherit;
+    }
 }

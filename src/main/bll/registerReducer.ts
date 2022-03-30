@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 import {AppThunkType} from "./store";
-import {cardsAPI} from "../../API/api";
+import {authAndProfileApi} from "../dal/authAndProfileApi";
 import {setErrorAC, setLoadingAC} from "./appReducer";
 
 const initialState = {
@@ -33,7 +33,7 @@ type setRegisterType = ReturnType<typeof setRegister>
 export const registerTC = (email: string, password: string): AppThunkType => {
     return (dispatch: Dispatch) => {
         dispatch(setLoadingAC(true));
-        cardsAPI.register(email, password)
+        authAndProfileApi.register(email, password)
             .then(() => {
                 dispatch(setRegister(true))
                 dispatch(setErrorAC(''))

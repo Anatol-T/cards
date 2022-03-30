@@ -9,3 +9,9 @@
     height: 86vh;
     text-align: left;
 }
+
+@media (max-width: 1150px) {
+    .packFrame {
+        flex-direction: column;
+    }
+}

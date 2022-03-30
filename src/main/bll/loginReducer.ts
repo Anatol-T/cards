@@ -1,7 +1,7 @@
 import {Dispatch} from "redux";
 import {AppThunkType} from "./store";
-import { profileInitialState, setProfileData} from "./profileReducer";
-import {cardsAPI} from "../../API/api";
+import {profileInitialState, setProfileData} from "./profileReducer";
+import {authAndProfileApi} from "../dal/authAndProfileApi";
 import {setErrorAC, setLoadingAC} from "./appReducer";
 
 export type StateLoginType = {
@@ -42,7 +42,7 @@ export const setIsLoggedInAC = (status: boolean) => {
 export const loginTC = (email: string, password: string, remember: boolean): AppThunkType => {
     return (dispatch: Dispatch) => {
         dispatch(setLoadingAC(true));
-        cardsAPI.login(email, password, remember)
+        authAndProfileApi.login(email, password, remember)
             .then((res) => {
                 if (res.status === 200) {
                     dispatch(setProfileData(res.data))
@@ -62,7 +62,7 @@ export const loginTC = (email: string, password: string, remember: boolean): App
 export const logoutTC = (): AppThunkType => {
     return (dispatch: Dispatch) => {
         dispatch(setLoadingAC(true));
-        cardsAPI.logout()
+        authAndProfileApi.logout()
             .then((res) => {
                 if (res.status === 200) {
                     dispatch(setProfileData(profileInitialState))

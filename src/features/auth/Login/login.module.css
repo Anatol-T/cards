@@ -6,7 +6,6 @@
 .error {
     color: red;
     font-weight: 700;
-    /*border: 1px solid #b60004;*/
     padding: 5px;
     text-align: left;
     margin-bottom: 20px;
@@ -27,17 +26,23 @@
     text-decoration: none;
 }
 
-.forgotText {
+.forgotText a {
+    text-decoration: none;
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 17px;
-    text-align: right;
     color: #2D2E46;
     margin-bottom: 45px;
 }
 
-.forgotText:hover {
+.forgotText {
+    width: 100%;
+    text-align: right;
+    margin-bottom: 45px;
+}
+
+.forgotText a:hover {
     font-weight: bold;
 }
 

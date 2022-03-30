@@ -1,37 +1,48 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useState, KeyboardEvent, useEffect} from "react";
 import s from './PackSearch.module.css'
-import {useDispatch} from "react-redux";
-import {useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 import {changeCurrentPageAC, setFilteredPacksAC} from "../../../bll/cardsPackReducer";
-import Background from './IconSearch.svg'
+import {AppRootStateType} from "../../../bll/store";
 
 
 export const PacksSearch = () => {
-   // const packName = useSelector<AppRootStateType, string>(state => state.cardsPack.packName);
     const dispatch = useDispatch()
-    const {packId} = useParams()
-
-    let [event, setEvent] = useState<string>('')
+    const packName = useSelector<AppRootStateType, string>(state => state.cardsPack.packName)
+    //const myPacks = useSelector<AppRootStateType, boolean>(state => state.cardsPack.myPacks);
+    const [event, setEvent] = useState<string>('')
 
     let handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setEvent(e.currentTarget.value)
-
     };
+    useEffect(() => {
+        if (packName !== event) setEvent(packName)
+    }, [packName])
+    // useEffect(() => {
+    //     setEvent('')
+    // }, [myPacks])
 
     let BtnHandler = () => {
         dispatch(setFilteredPacksAC(event))
         dispatch(changeCurrentPageAC(1))
     }
 
+    const onKeyPressBtnHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            BtnHandler()
+        }
+    }
+
+
     return (
         <div className={s.wrap}>
             <input
+                onKeyPress={onKeyPressBtnHandler}
                 type="text"
                 placeholder="Search..."
                 value={event}
                 onChange={handleChange}
             />
-            <button onClick={BtnHandler} className={s.btnSearch}></button>
+            <button onClick={BtnHandler} className={s.btnSearch}> </button>
         </div>
     );
 }

@@ -21,7 +21,6 @@ const App = () => {
 
     return (
         <div className="App">
-            {/*<Main/>*/}
             <RoutesComponent/>
         </div>
     );

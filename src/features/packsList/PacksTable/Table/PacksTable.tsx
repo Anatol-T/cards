@@ -3,7 +3,7 @@ import styles from './PacksTable.module.css'
 import Pack from "./Pack";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../../../main/bll/store";
-import {PackType} from "../../../../API/cardsPackApi";
+import {PackType} from "../../../../main/dal/cardsPackApi";
 import {sortPacksAC} from "../../../../main/bll/cardsPackReducer";
 import {sortFields} from "../../../../utilits/functionsCommon/sortingField";
 
@@ -17,8 +17,6 @@ const PacksTable = () => {
     const direction = sortPacks[0]
     const activeField = sortPacks.slice(1)
     const rotate = direction === "1" ? styles.up : ""
-
-    // const [isActive, setIsActive] = useState<boolean>(false)
 
     const sortFieldsPack = (field: string) => sortFields(field, sortPacksAC, isLoading, sortPacks, dispatch)
 

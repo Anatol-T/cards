@@ -1,4 +1,4 @@
-import {instance} from "./api";
+import {instance} from "./authAndProfileApi";
 
 export const cardsPackApi = {
     getPacks(params: Partial<GetPacksParamsType>) {
@@ -14,7 +14,6 @@ export const cardsPackApi = {
         return instance.put('/cards/pack', {cardsPack: {...updatedCardsPack}})
     },
 }
-
 
 // packs
 export type GetPacksParamsType = {

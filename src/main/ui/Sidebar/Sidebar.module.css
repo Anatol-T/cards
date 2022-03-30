@@ -1,11 +1,22 @@
 .sidebar {
     background: #ECECF9;
     padding: 24px;
-    max-width: 243px;
-}
-@media (max-width: 1150px) {
-    .sidebar {
-        display: none;
-    }
+    /*max-width: 243px;*/
 }
 
+.containerNumberOfCards{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+@media (max-width: 1150px) {
+    .sidebar {
+        padding: 0 10px 10px 10px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+}

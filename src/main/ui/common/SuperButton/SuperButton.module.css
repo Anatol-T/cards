@@ -4,13 +4,14 @@
     border: none;
     cursor: pointer;
     text-align: center;
-    padding: 10px 60px;
+    padding: 10px 40px;
     font-size: 16px;
     line-height: 20px;
     color: #ECECF9;
     background: #21268F;
     border-radius: 30px;
     /*transition: 0.4s all;*/
+    /*white-space: nowrap;*/
 }
 
 .default:hover {
@@ -63,3 +64,21 @@
     background: #D7D8EF;
     color: #21268F;
 }
+
+@media (max-width: 500px) {
+    .light {
+        padding: 7px 30px;
+        font-size: 14px;
+    }
+
+    .default {
+        padding: 7px 30px;
+        font-size: 14px;
+    }
+
+    .red {
+        padding: 7px 30px;
+        font-size: 14px;
+    }
+}
+

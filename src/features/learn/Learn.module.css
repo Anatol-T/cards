@@ -1,24 +1,28 @@
 .mainBlock {
 
 }
-.radioBlock{
+
+.radioBlock {
     display: flex;
     flex-direction: column;
     align-items: start;
-    justify-content:start;
+    justify-content: start;
     gap: 7px;
 }
+
 .gap {
     padding-bottom: 50px !important;
 }
+
 .block {
     padding: 10px 0;
     width: 100%;
     text-align: left;
 }
+
 .btnBlock {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding:  50px 0 30px;
+    padding: 50px 0 30px;
 }

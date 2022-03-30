@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import styles from "./CardsTable.module.css";
-import {CardType} from "../../../../API/cardsApi";
-import Preloader from "../../../../main/ui/common/Preloader/Preloader";
+import {CardType} from "../../../../main/dal/cardsApi";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../../../main/bll/store";
 import {SuperLoading} from "../../../../main/ui/common/Loading/loading";
@@ -10,7 +9,6 @@ import {useParams} from "react-router-dom";
 import Modal from "../../../../main/ui/common/Modal/Modal";
 import ModalButtonsWrap from "../../../../main/ui/common/Modal/ModalButtonsWrap";
 import SuperButton from "../../../../main/ui/common/SuperButton/SuperButton";
-import SuperInputText from "../../../../main/ui/common/SuperInputText/SuperInputText";
 import SuperTextArea from "../../../../main/ui/common/SuperTextArea/SuperTextArea";
 
 type CardPropsType = {
@@ -90,16 +88,14 @@ const Card: React.FC<CardPropsType> = ({card, isCheckId, classMyCards}) => {
             </Modal>
             }
             {modalType === 'Edit' &&
-            <Modal title={'Edit Pack'} show={isShownModal} closeModal={closeModal}>
+            <Modal title={'Edit Card'} show={isShownModal} closeModal={closeModal}>
                 <div className={styles.textArea}>
                     <label>New Question</label>
                     <SuperTextArea value={newQuestion} onChangeText={setNewQuestion}/>
-                    {/*<SuperInputText value={newQuestion} onChangeText={setNewQuestion}/>*/}
                 </div>
                 <div className={styles.textArea}>
                     <label>New Answer</label>
                     <SuperTextArea value={newAnswer} onChangeText={setNewAnswer}/>
-                    {/*<SuperInputText value={newAnswer} onChangeText={setNewAnswer}/>*/}
                 </div>
                 <ModalButtonsWrap closeModal={closeModal}>
                     <SuperButton onClick={updateCard}>Save</SuperButton>

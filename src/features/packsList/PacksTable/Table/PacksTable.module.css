@@ -39,6 +39,7 @@
     font-weight: 700;
     position: sticky;
     top: 0;
+    z-index: 999;
 }
 
 .header div {
@@ -99,11 +100,11 @@
 .delete:hover {
     background: darkred;
 }
+
 .disabled {
     pointer-events: none;
     opacity: 30%;
 }
-
 
 
 @media (max-width: 900px) {
@@ -133,6 +134,9 @@
 }
 
 @media (max-width: 460px) {
+    .table{
+        margin: 10px 0;
+    }
     .item {
         grid-template-columns: 1fr 60px;
         grid-gap: 16px;
@@ -146,5 +150,3 @@
         display: none;
     }
 }
-
-

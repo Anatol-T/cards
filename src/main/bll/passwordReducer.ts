@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 import {AppThunkType} from "./store";
-import {cardsAPI} from "../../API/api";
+import {authAndProfileApi} from "../dal/authAndProfileApi";
 import {setErrorAC, setLoadingAC} from "./appReducer";
 
 type  InitialStateType = {
@@ -35,7 +35,7 @@ export const passwordReducer = (state: InitialStateType = initialState, action: 
 
 // type
 // types
-export type AuthActionsType =  passwordForgotACType | setIsChangedPassType
+export type AuthActionsType = passwordForgotACType | setIsChangedPassType
 type passwordForgotACType = ReturnType<typeof passwordForgotAC>
 type setIsChangedPassType = ReturnType<typeof setIsChangedPassAC>
 
@@ -63,7 +63,7 @@ const setIsChangedPassAC = (isChangedPass: boolean) => {
 export const passwordForgotTC = (email: string): AppThunkType => {
     return (dispatch: Dispatch) => {
         dispatch(setLoadingAC(true));
-        cardsAPI.sendMail(email)
+        authAndProfileApi.sendMail(email)
             .then(res => {
                 if (res.status === 200) {
                     dispatch(passwordForgotAC(true, email))
@@ -82,7 +82,7 @@ export const passwordForgotTC = (email: string): AppThunkType => {
 export const changePassTC = (newPassword: string, token: string | undefined): AppThunkType => {
     return (dispatch: Dispatch) => {
         dispatch(setLoadingAC(true));
-        cardsAPI.newPassword(newPassword, token)
+        authAndProfileApi.newPassword(newPassword, token)
             .then((res) => {
                 if (res.status === 200) {
                     dispatch(setIsChangedPassAC(true))

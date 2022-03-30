@@ -22,7 +22,6 @@ export const Registration = () => {
     const loading = useSelector<AppRootStateType, boolean>(state => state.app.isLoading);
     const dispatch = useDispatch();
 
-    // ????? НУЖНО РАЗДЕЛЕНИЕ ОШИБОК ?????
     useEffect(() => {
         return () => {
             dispatch(setRegister(false));
@@ -67,7 +66,7 @@ export const Registration = () => {
                     </label>
                     <SuperInputPassword value={confirmPassword} onChangeText={setConfirmPassword}/>
                 </div>
-                <SuperButton onClick={onClickHandler}>Register</SuperButton>
+                <SuperButton onClick={onClickHandler} style={{padding: '10px 60px'}}>Register</SuperButton>
                 <p>
                     <NavLink to={PATH.LOGIN} className={s.linkLogin}>
                         <p className={s.signUpText}>To login</p>

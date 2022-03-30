@@ -1,5 +1,4 @@
-import {instance} from "./api";
-import {log} from "util";
+import {instance} from "./authAndProfileApi";
 
 export const cardsApi = {
     getCards(params: Partial<GetCardsParamsType>) {
@@ -82,7 +81,6 @@ export type updatedGradeType = {
     shots: number
 }
 
-
 export type addCardType = {
     cardsPack_id?: string;
     question?: string;
@@ -92,5 +90,5 @@ export type addCardType = {
     answerImg?: string;
     questionImg?: any;
     questionVideo?: string;
-    answerVideo?:string;
+    answerVideo?: string;
 }

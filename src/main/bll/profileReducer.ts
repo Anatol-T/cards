@@ -1,8 +1,6 @@
-// import {UserResponseType, MePutRequestType} from "../../API/profileApi";
 import {Dispatch} from "redux";
 import axios from "axios";
-// import {setLoadingAC} from "./loginReducer";
-import {cardsAPI, updateProfileRequestType, UserResponseType} from "../../API/api";
+import {authAndProfileApi, updateProfileRequestType, UserResponseType} from "../dal/authAndProfileApi";
 import {setLoadingAC} from "./appReducer";
 
 export const profileInitialState: UserResponseType = {
@@ -48,20 +46,20 @@ export const setProfileDeleteData = () => {
 }
 
 // thunks
-export const updateProfile = (data: updateProfileRequestType) =>  (dispatch: Dispatch) => {
+export const updateProfile = (data: updateProfileRequestType) => (dispatch: Dispatch) => {
     dispatch(setLoadingAC(true));
-    cardsAPI.updateProfile(data)
-      .then(res => {
-          dispatch(updateProfileData(res.data.updatedUser));
-      })
-      .catch(error => {
-          if (axios.isAxiosError(error) && error.response) {
-              dispatch(setProfileError(error.response.data.error));
-          }
-      })
-      .finally(()=>{
-          dispatch(setLoadingAC(false));
-      })
+    authAndProfileApi.updateProfile(data)
+        .then(res => {
+            dispatch(updateProfileData(res.data.updatedUser));
+        })
+        .catch(error => {
+            if (axios.isAxiosError(error) && error.response) {
+                dispatch(setProfileError(error.response.data.error));
+            }
+        })
+        .finally(() => {
+            dispatch(setLoadingAC(false));
+        })
 }
 
 //types

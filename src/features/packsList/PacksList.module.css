@@ -4,6 +4,7 @@
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
+    overflow: hidden;
 }
 
 .paginationWrapper {
@@ -12,24 +13,47 @@
     align-items: center;
     width: 100%;
 }
+
 .topPanel {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: space-between;
 }
+
 .search {
     /*padding-bottom: 20px;*/
     flex-grow: 1;
     margin-right: 20px;
 }
+
 .addBtn {
     flex-shrink: 0;
+}
+
+.containerCheckBox {
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.containerCheckBox span {
+    color: black;
+    font-size: 13px;
+    margin-bottom: 3px;
 }
 
 
 @media (max-width: 630px) {
     .main {
-        padding: 20px;
+        padding: 15px;
+    }
+
+    .main h2 {
+        margin: 0;
+        font-size: 20px;
+    }
+    .search{
+        margin: 0;
     }
 }
