@@ -6,6 +6,7 @@ import profileIcon from '../../../assets/images/Profile.svg';
 import packsListIcon from '../../../assets/images/Packs.svg';
 import {logoutTC} from "../../bll/loginReducer";
 import {useDispatch} from "react-redux";
+import {Chat} from "../../../features/chat/Chat";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <nav>
+        <Chat/>
         <NavLink to={PATH.PACKS} className={(navData) => navData.isActive ? styles.isActive : ""}>
           <div className={styles.packsLink}><img src={packsListIcon}
                                                  alt={'packsListIcon'}/><span>Packs list</span></div>

@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import Header from "../../main/ui/header/Header";
 import {Frame} from "../../main/ui/common/Frame/Frame";
 import SuperButton from "../../main/ui/common/SuperButton/SuperButton";
 import {PATH} from "../../main/ui/routes/Routes";
@@ -82,7 +81,6 @@ export const Learn = () => {
 
     return (
         <>
-            <Header/>
             {loading
                 ? <Preloader/>
                 : <Frame>

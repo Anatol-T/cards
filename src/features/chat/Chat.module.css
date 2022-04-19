@@ -1,0 +1,62 @@
+.chatContainer {
+    position: absolute;
+    left: 3%;
+}
+
+.btnChat {
+    outline: none;
+    background-color: #DCCCDB;
+    border: none;
+    text-decoration: none;
+    color: #2D2E46;
+    padding: 20px 30px;
+    opacity: 0.4;
+    font-size: 17px;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    position: relative;
+}
+
+.btnChat:hover,
+.btnChat:active,
+.btnChat:focus {
+    background-color: #DCCCDB;
+    opacity: 1;
+    border-bottom: 2px #21268F solid;
+}
+.chatSymbol {
+    width: 20px;
+}
+.chatTable {
+    padding: 5px;
+    outline: 2px #21268F solid;
+    border-radius: 10px;
+    width: 400px;
+    height: 400px;
+    overflow-y: scroll;
+    scroll-behavior: revert;
+}
+.chatTable::-webkit-scrollbar {
+    width: 4px;
+    background-color: #E6D4DE;
+}
+.chatTable::-webkit-scrollbar-thumb {
+    background-color: #9890C7;
+}
+.pre {
+    white-space: pre-line;
+}
+.unread {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: #b60004 solid 1px;
+    position: absolute;
+    top: 35px;
+    right: 8px;
+ text-align: center;
+    color: #b60004;
+    font-size: 13px;
+    font-weight: 900;
+}

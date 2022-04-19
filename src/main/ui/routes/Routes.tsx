@@ -11,6 +11,9 @@ import CheckEmail from "../../../features/auth/Password/CheckEmail/CheckEmail";
 import PacksList from "../../../features/packsList/PacksList";
 import Cards from "../../../features/cards/Cards";
 import {Learn} from "../../../features/learn/Learn";
+import Header from "../header/Header";
+import {useSelector} from "react-redux";
+import {AppRootStateType} from "../../bll/store";
 
 export const PATH = {
     LOGIN: '/login',
@@ -28,8 +31,10 @@ export const PATH = {
 }
 
 export const RoutesComponent = () => {
+    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.login.status);
     return (
         <>
+            {isLoggedIn && <Header/>}
             <Routes>
                 <Route path={"/"} element={<Login/>}/>
                 <Route path={PATH.LOGIN} element={<Login/>}/>

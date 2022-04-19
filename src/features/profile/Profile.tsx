@@ -9,7 +9,6 @@ import {Frame} from "../../main/ui/common/Frame/Frame";
 import SuperEditableSpan from "../../main/ui/common/SuperEditableSpan/SuperEditableSpan";
 import {PATH} from "../../main/ui/routes/Routes";
 import Preloader from "../../main/ui/common/Preloader/Preloader";
-import Header from "../../main/ui/header/Header";
 import SuperButton from "../../main/ui/common/SuperButton/SuperButton";
 import Modal from "../../main/ui/common/Modal/Modal";
 import {AvatarFileReader} from "./AvatarFileReader";
@@ -63,7 +62,6 @@ export const Profile = () => {
   }
   return (
     <>
-      <Header/>
       {loading && <Preloader/>}
       <Frame>
         <span><strong>It-incubator</strong></span>

@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import styles from './Cards.module.css'
-import Header from "../../main/ui/header/Header";
 import {PackFrame} from "../../main/ui/common/PackFrame/PackFrame";
 import CardsTable from "./CardsTable/Table/CardsTable";
 import {Navigate, NavLink, useParams} from "react-router-dom";
@@ -69,7 +68,6 @@ const Cards = () => {
 
     return (
         <>
-            <Header/>
             <PackFrame>
                 <div className={styles.main}>
                     <NavLink to={PATH.PACKS}><img src={backPage} alt={"backPage"}/></NavLink>
