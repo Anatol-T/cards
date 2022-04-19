@@ -31,7 +31,7 @@
 .chatTable {
     padding: 5px;
     outline: 2px #21268F solid;
-    border-radius: 10px;
+    /*border-radius: 10px;*/
     width: 400px;
     height: 400px;
     overflow-y: scroll;
@@ -40,6 +40,7 @@
 .chatTable::-webkit-scrollbar {
     width: 4px;
     background-color: #E6D4DE;
+    height: 4px;
 }
 .chatTable::-webkit-scrollbar-thumb {
     background-color: #9890C7;
@@ -55,8 +56,17 @@
     position: absolute;
     top: 35px;
     right: 8px;
- text-align: center;
+    text-align: center;
     color: #b60004;
     font-size: 13px;
     font-weight: 900;
+}
+@media (max-width: 553px) {
+    .chatContainer{
+        position: inherit;
+    }
+    .chatTable{
+        width: 330px;
+        height: 300px;
+    }
 }

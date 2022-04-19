@@ -9,7 +9,6 @@ import {useSelector} from "react-redux";
 import {AppRootStateType} from "../../main/bll/store";
 import SuperTextArea from "../../main/ui/common/SuperTextArea/SuperTextArea";
 
-
 type MessageType = {
   _id: string
   message: string
@@ -22,6 +21,7 @@ type MessageType = {
 let socket: SocketIOClient.Socket | null = null
 
 export const Chat = () => {
+
   const userName = useSelector<AppRootStateType, string>(state => state.profilePage.name);
 
   const [messages, setMessages] = useState<MessageType[]>([])
@@ -33,7 +33,7 @@ export const Chat = () => {
   const tableRef = useRef<HTMLDivElement>(null)
 
   const showModal = () => {
-    setIsModal(true);
+    setIsModal(true)
     setUnread(0)
   }
   const closeModal = () => setIsModal(false);
@@ -43,17 +43,13 @@ export const Chat = () => {
     socket.emit("init",  (answer: string) => console.log(answer));
     socket.emit("client-name-sent", userName, (answer: string) => console.log(answer));
     socket.on('init-messages-published', (messages: MessageType[]) => {
-      console.log(messages)
       setMessages(prevState => [...prevState, ...messages])
     })
-
     socket.on('new-message-sent', (mes:MessageType)=>{
       console.log(mes)
       setMessages(prevState => [...prevState, mes])
-      if (isModal) {
-        setUnread(prevState => prevState + 1)
-      }
     })
+
     return () => {
       socket?.close()
     }
@@ -61,12 +57,15 @@ export const Chat = () => {
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({behavior: "smooth"})
-
+    if (!isModal) {
+      setUnread(prevState => prevState + 1)
+    }
   }, [messages])
+
   useEffect(() => {
     tableRef.current?.scrollTo(0, scrollPosition)
-
   }, [isModal])
+
   const sendMassage = () => {
     if(socket?.connected && newMessage){
       socket?.emit("client-message-sent", newMessage, (answer: string) => {
@@ -74,8 +73,8 @@ export const Chat = () => {
       })
       setNewMessage('')
     }
-
   }
+
   const messagesList = messages.map(m => {
     return (
       <div  key={m._id}>
@@ -83,18 +82,18 @@ export const Chat = () => {
       </div>
     )
   })
+
   return (
     <>
       <div className={styles.chatContainer}>
         <button className={styles.btnChat} onClick={showModal}>
           <img src={chatImg} alt="chat" className={styles.chatSymbol}/>
           &nbsp; Chat
-          {unread ? <div className={styles.unread}>{unread}</div> : null}
+          {unread ? <div className={styles.unread}>!</div> : null}
         </button>
       </div>
       <Modal title={'Chat'} show={isModal} closeModal={closeModal}>
         <div className={styles.chatTable} onScroll={(e)=>{
-          //e.currentTarget.scrollTo(0, 100)
           setScrollPosition(e.currentTarget.scrollTop)
         }} ref={tableRef}>
           {messagesList}
@@ -110,5 +109,5 @@ export const Chat = () => {
     </>
   )
 }
-//elem.scrollTop = elem.scrollHeight;
+
 
