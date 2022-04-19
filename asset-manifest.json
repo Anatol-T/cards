@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/projectcards/static/css/main.0fdafa75.css",
+    "main.js": "/projectcards/static/js/main.d5acb376.js",
+    "static/js/787.c3e71869.chunk.js": "/projectcards/static/js/787.c3e71869.chunk.js",
+    "static/media/editIcon.png": "/projectcards/static/media/editIcon.545bc6345da3171ae4bd.png",
+    "static/media/Packs.svg": "/projectcards/static/media/Packs.5d964c999636ddb653dbad492824c432.svg",
+    "static/media/error404.png": "/projectcards/static/media/error404.76ee353c5b1b959f8913.png",
+    "static/media/chat2.png": "/projectcards/static/media/chat2.10ea664014bd69bf2c7e.png",
+    "static/media/noAvatar.png": "/projectcards/static/media/noAvatar.6c53c0a1c12e6d7eaa36.png",
+    "index.html": "/projectcards/index.html",
+    "static/media/IconSearch.svg": "/projectcards/static/media/IconSearch.b12728372dae9c019091.svg",
+    "static/media/Profile.svg": "/projectcards/static/media/Profile.6166565d09ae68878fba759ec5639ff6.svg",
+    "static/media/no-view.svg": "/projectcards/static/media/no-view.ef3570e6475960ea172b.svg",
+    "static/media/view.svg": "/projectcards/static/media/view.bc05a0cb437d19c6e4d9.svg",
+    "static/media/backPage.svg": "/projectcards/static/media/backPage.d52a0f56410b4c87aee61f6bc39ddef2.svg",
+    "main.0fdafa75.css.map": "/projectcards/static/css/main.0fdafa75.css.map",
+    "main.d5acb376.js.map": "/projectcards/static/js/main.d5acb376.js.map",
+    "787.c3e71869.chunk.js.map": "/projectcards/static/js/787.c3e71869.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0fdafa75.css",
+    "static/js/main.d5acb376.js"
+  ]
+}
